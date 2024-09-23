@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import nextStoreLogoLight from '@/app/assets/NextStore-light.png';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -18,6 +18,19 @@ interface NavLinks {
 const Header: React.FC = () => {
     const pathName = usePathname();
     console.log(pathName);
+    // States
+    const [searchText, setSearchText] = useState<string>('');
+
+    // Implement the search functionality
+    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const target = e.target as typeof e.target & {
+            searchProduct: {value: string}
+        };
+
+        console.log(target.searchProduct.value);
+    };
 
     const navBtn: NavButton[] = [
         { btnName: 'Login', path: '/login' },
@@ -43,20 +56,21 @@ const Header: React.FC = () => {
                     </Link>
                 </div>
 
-                <div className=''>
-                    <input
-                        type="text"
-                        name="SearchProduct"
-                        id="SearchProduct"
-                        placeholder='Search your favourite product here'
-                        className='border border-r-0 border-[#dd37fc] focus:outline-none bg-inherit text-[#6593fc] font-bold rounded-l-full w-[362px] px-6 py-3'
-                    />
-                    <input
-                        type="submit"
-                        value={'Search'}
-                        className='border border-l-0 border-[#dd37fc] focus:outline-none bg-[#dd37fc] text-[#161616] font-bold hover:cursor-pointer px-6 rounded-r-full py-3'
-                    />
-                </div>
+                    <form onSubmit={handleSearch} action="">
+                        <input
+                            type="text"
+                            name="searchProduct"
+                            id="searchProduct"
+                            spellCheck={true}
+                            placeholder='Search your favourite product here'
+                            className='border border-r-0 border-[#dd37fc] focus:outline-none bg-inherit text-[#6593fc] font-bold rounded-l-full w-[362px] px-6 py-3'
+                        />
+                        <input
+                            type="submit"
+                            value={'Search'}
+                            className='border border-l-0 border-[#dd37fc] focus:outline-none bg-[#dd37fc] text-[#161616] font-bold hover:cursor-pointer px-6 rounded-r-full py-3'
+                        />
+                    </form>
 
                 {/* NavLinks */}
                 <ul className='flex gap-6'>
