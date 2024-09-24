@@ -17,7 +17,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "NextStore",
-  description: "An E-commerce Website",
+  description: "An e-commerce website offering a wide range of products including cars, motorbikes, and electronics",
 };
 
 export default function RootLayout({

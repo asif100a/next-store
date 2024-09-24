@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { FC } from 'react';
 import nextStoreLogoLight from '../../assets/NextStore-light-footer.png';
 import Link from 'next/link';
 
-const Footer = () => {
+const Footer: FC = () => {
     return (
         <footer className='bg-[#f6efef] container xl:px-24 py-3'>
             <div className='space-y-4'>
@@ -45,7 +45,7 @@ const Footer = () => {
     );
 };
 
-const quickLinks = <>
+const quickLinks: JSX.Element = <>
     <div className='text-sm'>
         <h4 className='mb-4 font-bold text-[#6593fc]'>Quick Links</h4>
         <ul className='flex flex-col gap-2'>
@@ -54,14 +54,14 @@ const quickLinks = <>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>About Us</Link></li>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Contact Us</Link></li>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>FAQs</Link></li>
-            <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Shipping & Delivery</Link></li>
-            <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Returns & Refunds</Link></li>
+            <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Shipping &amp; Delivery</Link></li>
+            <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Returns &amp; Refunds</Link></li>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Track You Order</Link></li>
         </ul>
     </div>
 </>;
 
-const accountRelatedLinks = <>
+const accountRelatedLinks: JSX.Element = <>
     <div className='text-sm'>
         <h4 className='mb-4 font-bold text-[#6593fc]'>Account Related</h4>
         <ul className='flex flex-col gap-2'>
@@ -74,7 +74,7 @@ const accountRelatedLinks = <>
     </div>
 </>;
 
-const legalLinks = <>
+const legalLinks: JSX.Element = <>
     <div className='text-sm'>
         <h4 className='mb-4 font-bold text-[#6593fc]'>Legal Links</h4>
         <ul className='flex flex-col gap-2'>
@@ -85,7 +85,7 @@ const legalLinks = <>
     </div>
 </>;
 
-const customerSupportLinks = <>
+const customerSupportLinks: JSX.Element = <>
     <div className='text-sm'>
         <h4 className='mb-4 font-bold text-[#6593fc]'>Customer Supports</h4>
         <ul className='flex flex-col gap-2'>
@@ -96,7 +96,7 @@ const customerSupportLinks = <>
     </div>
 </>;
 
-const categoriesLinks = <>
+const categoriesLinks: JSX.Element = <>
     <div className='text-sm'>
         <h4 className='mb-4 font-bold text-[#6593fc]'>Categories</h4>
         <ul className='flex flex-col gap-2'>
