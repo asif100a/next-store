@@ -1,14 +1,21 @@
 import Image from 'next/image';
 import React, { FC } from 'react';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { IoStar } from 'react-icons/io5';
 
 const ForYou: FC = () => {
     const productTitle = "Rescue Bots Deformation Transformer Car One-Step Car Robot Vehicle Model Action Figures Toy Transform Car for Kids";
 
     return (
-        <section className='py-6'>
-            <h1 className='text-2xl font-medium'>For You</h1>
-            <div className='grid grid-cols-5'>
+        <section className=''>
+            <div className='flex justify-between items-center'>
+                <h1 className='text-2xl font-medium mb-3'>For You</h1>
+                <div className='flex justify-between items-center gap-6'>
+                    <button><IoIosArrowBack className='hover:text-orange-400 text-lg' /></button>
+                    <button><IoIosArrowForward className='hover:text-orange-400 text-lg' /></button>
+                </div>
+            </div>
+            <div className='grid grid-cols-4 xl:grid-cols-5 w-fit gap-3 mx-auto'>
                 {/* Card 1 */}
                 <div>
                     <div className='border w-60 px-3 py-3 space-y-2'>

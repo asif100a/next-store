@@ -5,8 +5,8 @@ import Link from 'next/link';
 
 const Footer: FC = () => {
     return (
-        <footer className='bg-[#f6efef] container xl:px-24 py-3'>
-            <div className='space-y-4'>
+        <footer className='bg-[#f6efef] py-3'>
+            <div className='space-y-4 w-full overflow-hidden lg:w-[996px] xl:w-[1248px] mx-auto'>
                 <Image
                     src={nextStoreLogoLight}
                     alt="NextStore"
