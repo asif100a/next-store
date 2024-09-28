@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 import nextStoreLogoLight from '@/app/assets/NextStore-light.png';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -12,14 +12,14 @@ interface NavLinks {
 };
 
 const Header: React.FC = () => {
-    const pathName = usePathname();
+    const pathName: string = usePathname();
     const router = useRouter();
     console.log(pathName);
     // States
-    const [searchText, setSearchText] = useState<string>('');
+    // const [searchText, setSearchText] = useState<string>('');
 
     // Implement the search functionality
-    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSearch = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
 
         const target = e.target as typeof e.target & {
@@ -30,7 +30,7 @@ const Header: React.FC = () => {
     };
 
     // Handle the My List button
-    const handleMyListsButton = () => {
+    const handleMyListsButton = (): void => {
         router.push('/my-lists');
     };
 
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
                     {/* NavLinks */}
                     <ul className='flex gap-6'>
                         {
-                            links.map((link, n) => (
+                            links.map((link: NavLinks, n: number) => (
                                 <li key={n}>
                                     <Link href={link.path} className={pathName === link?.path ? 'text-[#6593fc]' : 'text-black'}>{link.linkName}</Link>
                                 </li>
