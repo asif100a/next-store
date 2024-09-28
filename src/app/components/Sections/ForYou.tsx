@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { FC } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { IoStar } from 'react-icons/io5';
-import SeeMoreBtn from '../UI-parts/SeeMoreBtn';
+import SeeMoreBtn from '../UI-parts/SeeMoreButton';
 
 const ForYou: FC = () => {
     const productTitle = "Rescue Bots Deformation Transformer Car One-Step Car Robot Vehicle Model Action Figures Toy Transform Car for Kids";
@@ -44,7 +44,7 @@ const ForYou: FC = () => {
                                 </span>
                             </p>
                         </div>
-                        <button className='border border-[#6593fc66] px-2 md:px-3 py-[2px] md:py-1 text-[#6593fc] text-xs md:text-base font-bold'>Buy</button>
+                        <button className='box-border border border-[#6593fc66] px-2 md:px-3 py-[2px] md:py-1 text-[#6593fc] text-xs md:text-base font-bold'>Buy</button>
                     </div>
                 </div>
                 {/* Card 2 */}
@@ -74,7 +74,7 @@ const ForYou: FC = () => {
                                 </span>
                             </p>
                         </div>
-                        <button className='border border-[#6593fc66] px-2 md:px-3 py-[2px] md:py-1 text-[#6593fc] text-xs md:text-base font-bold'>Buy</button>
+                        <button className='box-border border border-[#6593fc66] px-2 md:px-3 py-[2px] md:py-1 text-[#6593fc] text-xs md:text-base font-bold'>Buy</button>
                     </div>
                 </div>
                 {/* Card 3 */}
@@ -104,7 +104,7 @@ const ForYou: FC = () => {
                                 </span>
                             </p>
                         </div>
-                        <button className='border border-[#6593fc66] px-2 md:px-3 py-[2px] md:py-1 text-[#6593fc] text-xs md:text-base font-bold'>Buy</button>
+                        <button className='box-border border border-[#6593fc66] px-2 md:px-3 py-[2px] md:py-1 text-[#6593fc] text-xs md:text-base font-bold'>Buy</button>
                     </div>
                 </div>
                 {/* Card 4 */}
@@ -134,7 +134,7 @@ const ForYou: FC = () => {
                                 </span>
                             </p>
                         </div>
-                        <button className='border border-[#6593fc66] px-2 md:px-3 py-[2px] md:py-1 text-[#6593fc] text-xs md:text-base font-bold'>Buy</button>
+                        <button className='box-border border border-[#6593fc66] px-2 md:px-3 py-[2px] md:py-1 text-[#6593fc] text-xs md:text-base font-bold'>Buy</button>
                     </div>
                 </div>
                 {/* Card 5 */}
@@ -164,7 +164,7 @@ const ForYou: FC = () => {
                                 </span>
                             </p>
                         </div>
-                        <button className='border border-[#6593fc66] px-2 md:px-3 py-[2px] md:py-1 text-[#6593fc] text-xs md:text-base font-bold'>Buy</button>
+                        <button className='box-border border border-[#6593fc66] px-2 md:px-3 py-[2px] md:py-1 text-[#6593fc] text-xs md:text-base font-bold'>Buy</button>
                     </div>
                 </div>
                 {/* Card 6 */}
@@ -194,11 +194,11 @@ const ForYou: FC = () => {
                                 </span>
                             </p>
                         </div>
-                        <button className='border border-[#6593fc66] px-2 md:px-3 py-[2px] md:py-1 text-[#6593fc] text-xs md:text-base font-bold'>Buy</button>
+                        <button className='box-border border border-[#6593fc66] px-2 md:px-3 py-[2px] md:py-1 text-[#6593fc] text-xs md:text-base font-bold'>Buy</button>
                     </div>
                 </div>
             </div>
-            <div className='block lg:hidden text-center mt-3'>
+            <div className='block lg:hidden text-center mt-2'>
                 <SeeMoreBtn />
             </div>
         </section>
