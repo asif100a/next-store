@@ -3,18 +3,12 @@ import Image from 'next/image';
 import React from 'react';
 import nextStoreLogoLight from '@/app/assets/NextStore-light.png';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { PiShoppingCartLight } from 'react-icons/pi';
-
-interface NavLinks {
-    linkName: string,
-    path: string
-};
+import NavLinks from '../UI-parts/NavLinks';
 
 const Header: React.FC = () => {
-    const pathName: string = usePathname();
     const router = useRouter();
-    console.log(pathName);
     // States
     // const [searchText, setSearchText] = useState<string>('');
 
@@ -34,16 +28,9 @@ const Header: React.FC = () => {
         router.push('/my-lists');
     };
 
-    const links: NavLinks[] = [
-        { linkName: 'Home', path: '/' },
-        { linkName: 'About', path: '/about' },
-        { linkName: 'Login', path: '/login' },
-        { linkName: 'Sign Up', path: '/sign-up' },
-    ];
-
     return (
         <header className='bg-[#ffff] p-0 xl:px-24 py-2 shadow-md shadow-[#6593fc]'>
-            <nav className='flex justify-between items-center w-full lg:w-[996px] xl:w-[1248px] mx-auto'>
+            <div className='flex justify-between items-center w-full lg:w-[996px] xl:w-[1248px] mx-auto'>
                 <div>
                     <Link href={'/'}>
                         <Image
@@ -54,6 +41,21 @@ const Header: React.FC = () => {
                         />
                     </Link>
                 </div>
+
+                <div className='relative hidden'>
+                    <button onClick={handleMyListsButton}>
+                        <PiShoppingCartLight className='w-10 h-10' />
+                    </button>
+                    <span className='bg-inherit border border-[#dd37fc] text-[#6593fc] text-base font-semibold w-5 h-5 rounded-full flex justify-center items-center absolute -top-[10px] -right-[10px]'>
+                        <span className='w-fit h-fit text-sm'>2</span>
+                    </span>
+                </div>
+
+                {/* Dropdown Menu for small devices */}
+                <nav className='hidden'>
+                    {/* NavLinks */}
+                    <NavLinks />
+                </nav>
 
                 <div className='flex items-center gap-3'>
                     <form onSubmit={handleSearch} action="">
@@ -72,7 +74,7 @@ const Header: React.FC = () => {
                         />
                     </form>
 
-                    <div className='relative'>
+                    <div className='relative hidden lg:flex'>
                         <button onClick={handleMyListsButton}>
                             <PiShoppingCartLight className='w-10 h-10' />
                         </button>
@@ -82,19 +84,12 @@ const Header: React.FC = () => {
                     </div>
                 </div>
 
-                <div className='flex gap-6'>
+
+                <nav>
                     {/* NavLinks */}
-                    <ul className='flex gap-6'>
-                        {
-                            links.map((link: NavLinks, n: number) => (
-                                <li key={n}>
-                                    <Link href={link.path} className={pathName === link?.path ? 'text-[#6593fc]' : 'text-black'}>{link.linkName}</Link>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </div>
-            </nav>
+                    <NavLinks />
+                </nav>
+            </div>
         </header>
     );
 };
