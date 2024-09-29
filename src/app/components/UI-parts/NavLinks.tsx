@@ -8,6 +8,9 @@ interface NavLinksProps {
 
 const NavLinks: React.FC<NavLinksProps> = ({small}) => {
     const pathName: string = usePathname();
+    if(small) {
+        console.log(small);
+    }
 
     return (
         <ul className='hidden lg:flex gap-6 text-sm'>
