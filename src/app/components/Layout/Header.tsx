@@ -4,7 +4,6 @@ import React from 'react';
 import nextStoreLogoLight from '@/app/assets/NextStore-light.png';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { PiShoppingCartLight } from 'react-icons/pi';
 import NavLinks from '../UI-parts/NavLinks';
 import { TbMenuDeep } from 'react-icons/tb';
 import ShoppingCart from '../UI-parts/ShoppingCart';

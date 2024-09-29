@@ -1,9 +1,11 @@
 import *as React from 'react';
 import { PiShoppingCartLight } from 'react-icons/pi';
 
-// interface 
+interface ShoppingCartProps {
+    handleMyListsButton: () => void;
+};
 
-const ShoppingCart: React.FC = ({handleMyListsButton}) => {
+const ShoppingCart: React.FC<ShoppingCartProps> = ({handleMyListsButton}) => {
     return (
         <div className='relative flex'>
             <button onClick={handleMyListsButton}>
