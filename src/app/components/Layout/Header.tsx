@@ -4,8 +4,9 @@ import React from 'react';
 import nextStoreLogoLight from '@/app/assets/NextStore-light.png';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { PiShoppingCartLight } from 'react-icons/pi';
 import NavLinks from '../UI-parts/NavLinks';
+import { TbMenuDeep } from 'react-icons/tb';
+import ShoppingCart from '../UI-parts/ShoppingCart';
 
 const Header: React.FC = () => {
     const router = useRouter();
@@ -29,65 +30,65 @@ const Header: React.FC = () => {
     };
 
     return (
-        <header className='bg-[#ffff] p-0 xl:px-24 py-2 shadow-md shadow-[#6593fc]'>
-            <div className='flex justify-between items-center w-full lg:w-[996px] xl:w-[1248px] mx-auto'>
-                <div>
-                    <Link href={'/'}>
-                        <Image
-                            src={nextStoreLogoLight}
-                            alt='NextStore'
-                            className='md:w-20 xl:w-24 h-auto'
-                            priority
-                        />
-                    </Link>
+        <header className='bg-[#ffff] p-0 xl:px-24 py-0 md:py-2 md:shadow-md md:shadow-[#6593fc]'>
+            <div className='flex flex-col md:flex-row justify-between md:items-center w-full lg:w-[996px] xl:w-[1248px] mx-auto'>
+                <div className='flex justify-between md:block px-2 md:px-0 shadow-md shadow-[#6593fc] md:shadow-none'>
+                    {/* Logo */}
+                    <div className='mb-1 md:mb-0'>
+                        <Link href={'/'}>
+                            <Image
+                                src={nextStoreLogoLight}
+                                alt='NextStore'
+                                className='w-16 md:w-20 xl:w-24 h-auto'
+                                priority
+                            />
+                        </Link>
+                    </div>
+
+                    <div className='flex items-center gap-6 w-fit md:hidden'>
+                        {/* My List Cart */}
+                        <ShoppingCart handleMyListsButton={handleMyListsButton} />
+
+                        {/* Dropdown Menu for small devices */}
+                        <nav className='block lg:hidden'>
+                            {/* NavLinks */}
+                            <div className='hidden'>
+                                <NavLinks small={true} />
+                            </div>
+                            <div>
+                                <TbMenuDeep className='text-lg' />
+                            </div>
+                        </nav>
+                    </div>
                 </div>
 
-                <div className='relative hidden'>
-                    <button onClick={handleMyListsButton}>
-                        <PiShoppingCartLight className='w-10 h-10' />
-                    </button>
-                    <span className='bg-inherit border border-[#dd37fc] text-[#6593fc] text-base font-semibold w-5 h-5 rounded-full flex justify-center items-center absolute -top-[10px] -right-[10px]'>
-                        <span className='w-fit h-fit text-sm'>2</span>
-                    </span>
-                </div>
-
-                {/* Dropdown Menu for small devices */}
-                <nav className='hidden'>
-                    {/* NavLinks */}
-                    <NavLinks />
-                </nav>
-
-                <div className='flex items-center gap-3'>
-                    <form onSubmit={handleSearch} action="">
+                <div className='block md:flex md:gap-6 md:items-center mt-3 md:mt-0'>
+                    <form onSubmit={handleSearch} action="" className='border border-[#dd37fc] rounded-full overflow-hidden flex gap-3 w-full md:w-96 py-1 px-1'>
                         <input
                             type="text"
                             name="searchProduct"
                             id="searchProduct"
                             spellCheck={true}
                             placeholder='Search your favourite product'
-                            className='border border-r-0 border-[#dd37fc] focus:outline-none bg-inherit text-[#6593fc] font-bold rounded-l-full lg:w-[280px] px-6 md:py-2 xl:py-3'
+                            className='focus:outline-none bg-inherit text-[#6593fc] text-xs md:text-sm font-bold w-full h-6 md:h-10 ml-2'
                         />
                         <input
                             type="submit"
                             value={'Search'}
-                            className='border border-l-0 border-[#dd37fc] focus:outline-none bg-[#dd37fc] text-[#161616] font-bold hover:cursor-pointer px-6 rounded-r-full md:py-2 xl:py-3'
+                            className='focus:outline-none bg-[#dd37fc] rounded-full text-[#161616] text-xs md:text-sm font-bold hover:cursor-pointer w-24 md:w-32 h-6 md:h-10'
                         />
                     </form>
 
-                    <div className='relative hidden lg:flex'>
-                        <button onClick={handleMyListsButton}>
-                            <PiShoppingCartLight className='w-10 h-10' />
-                        </button>
-                        <span className='bg-inherit border border-[#dd37fc] text-[#6593fc] text-base font-semibold w-5 h-5 rounded-full flex justify-center items-center absolute -top-[10px] -right-[10px]'>
-                            <span className='w-fit h-fit text-sm'>2</span>
-                        </span>
+                    <div className='hidden md:block w-fit'>
+                        {/* Shoping Cart logo */}
+                        <ShoppingCart handleMyListsButton={handleMyListsButton} />
                     </div>
                 </div>
 
 
                 <nav>
                     {/* NavLinks */}
-                    <NavLinks />
+                    <NavLinks small={false} />
                 </nav>
             </div>
         </header>
