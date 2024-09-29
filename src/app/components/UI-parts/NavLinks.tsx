@@ -1,12 +1,16 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React from 'react';
+import *as React from 'react';
 
-const NavLinks: React.FC = () => {
+interface NavLinksProps {
+    small: boolean;
+};
+
+const NavLinks: React.FC<NavLinksProps> = ({small}) => {
     const pathName: string = usePathname();
 
     return (
-        <ul className='hidden lg:flex gap-6'>
+        <ul className='hidden lg:flex gap-6 text-sm'>
             <li>
                 <Link href={'/'} className={pathName === '/' ? 'text-[#6593fc]' : 'text-black'}>
                     Home
