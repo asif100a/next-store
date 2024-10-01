@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import nextStoreLogoLight from '@/app/assets/NextStore-light.png';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -12,6 +12,7 @@ const Header: React.FC = () => {
     const router = useRouter();
     // States
     // const [searchText, setSearchText] = useState<string>('');
+    const [showNav, setShowNav] = useState<boolean>(false);
 
     // Implement the search functionality
     const handleSearch = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -27,6 +28,16 @@ const Header: React.FC = () => {
     // Handle the My List button
     const handleMyListsButton = (): void => {
         router.push('/my-lists');
+    };
+
+    // Handle the ShowNav
+    const handleShowNav = () => {
+        setShowNav(true);
+    };
+
+    // Handle the HideNav
+    const handleHideNav = () => {
+        setShowNav(false);
     };
 
     return (
@@ -49,15 +60,12 @@ const Header: React.FC = () => {
                         {/* My List Cart */}
                         <ShoppingCart handleMyListsButton={handleMyListsButton} />
 
-                        {/* Dropdown Menu for small devices */}
-                        <nav className='block lg:hidden'>
-                            {/* NavLinks */}
-                            <div className='hidden'>
-                                <NavLinks small={true} />
-                            </div>
-                            <div>
+                        {/* NavLinks and Dropdown Menu for small devices */}
+                        <nav className='block lg:hidden relative'>
+                            <span onClick={handleShowNav}>
                                 <TbMenuDeep className='text-lg' />
-                            </div>
+                            </span>
+                            <NavLinks showNav={showNav} handleHideNav={handleHideNav} />
                         </nav>
                     </div>
                 </div>
@@ -86,9 +94,9 @@ const Header: React.FC = () => {
                 </div>
 
 
-                <nav>
-                    {/* NavLinks */}
-                    <NavLinks small={false} />
+                {/* NavLinks for Large Devices */}
+                <nav className='hidden lg:block'>
+                    <NavLinks showNav={showNav} handleHideNav={handleHideNav} />
                 </nav>
             </div>
         </header>
