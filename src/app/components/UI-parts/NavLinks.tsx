@@ -1,16 +1,23 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import *as React from 'react';
+import { BiX } from 'react-icons/bi';
 
 interface NavLinksProps {
-    small: boolean;
+    showNav: boolean;
+    handleHideNav: () => void;
 };
 
-const NavLinks: React.FC<NavLinksProps> = ({small}) => {
+const NavLinks: React.FC<NavLinksProps> = ({showNav, handleHideNav}) => {
     const pathName: string = usePathname();
 
     return (
-        <ul className='hidden lg:flex gap-6 text-sm'>
+        <ul className={`gap-6 text-sm bg-inherit lg:flex lg:flex-row blur-sidebar ${showNav ? 'flex flex-col h-screen w-[50%] md:w-[40%] px-6 py-3 blur-sidebar-active' : ''}`}>
+            {
+                showNav && <li>
+                    <BiX onClick={handleHideNav} className='text-2xl' />
+                </li>
+            }
             <li>
                 <Link href={'/'} className={pathName === '/' ? 'text-[#6593fc]' : 'text-black'}>
                     Home
