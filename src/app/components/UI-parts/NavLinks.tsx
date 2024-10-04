@@ -14,11 +14,6 @@ const NavLinks: React.FC<NavLinksProps> = ({showNav, handleHideNav}) => {
 
     return (
         <ul className={`gap-6 text-sm bg-inherit lg:flex lg:flex-row blur-sidebar ${showNav ? 'flex flex-col h-screen w-[50%] md:w-[40%] px-6 py-3 blur-sidebar-active' : ''}`}>
-            {
-                showNav && <li>
-                    <BiX onClick={handleHideNav} className='text-2xl' />
-                </li>
-            }
             <li>
                 <Link href={'/'} className={pathName === '/' ? 'text-[#6593fc]' : 'text-black'}>
                     Home
