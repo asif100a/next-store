@@ -41,7 +41,7 @@ const Header: React.FC = () => {
     };
 
     return (
-        <header className='bg-[#ffff] p-0 xl:px-24 py-0 md:py-2 md:shadow-md md:shadow-[#6593fc]'>
+        <header className='bg-[#ffff] p-0 md:px-2 xl:px-24 py-0 md:py-2 md:shadow-md md:shadow-[#6593fc]'>
             <div className='flex flex-col md:flex-row justify-between md:items-center w-full lg:w-[996px] xl:w-[1248px] mx-auto'>
                 <div className='flex justify-between md:block px-2 md:px-0 shadow-md shadow-[#6593fc] md:shadow-none'>
                     {/* Logo */}
@@ -71,25 +71,33 @@ const Header: React.FC = () => {
                 </div>
 
                 <div className='block md:flex md:gap-6 md:items-center mt-3 md:mt-0'>
-                    <form onSubmit={handleSearch} action="" className='border border-[#dd37fc] rounded-full overflow-hidden flex gap-3 w-full md:w-96 py-1 px-1'>
+                    <form onSubmit={handleSearch} action="" className='border border-[#dd37fc] rounded-full overflow-hidden flex gap-3 w-full md:w-80 lg:w-96 py-1 px-1'>
                         <input
                             type="text"
                             name="searchProduct"
                             id="searchProduct"
                             spellCheck={true}
                             placeholder='Search your favourite product'
-                            className='focus:outline-none bg-inherit text-[#6593fc] text-xs md:text-sm font-bold w-full h-6 md:h-10 ml-2'
+                            className='focus:outline-none bg-inherit text-[#6593fc] text-xs md:text-sm font-bold w-full h-6 md:h-8 lg:h-10 ml-2'
                         />
                         <input
                             type="submit"
                             value={'Search'}
-                            className='focus:outline-none bg-[#dd37fc] rounded-full text-[#161616] text-xs md:text-sm font-bold hover:cursor-pointer w-24 md:w-32 h-6 md:h-10'
+                            className='focus:outline-none bg-[#dd37fc] rounded-full text-[#161616] text-xs md:text-sm font-bold hover:cursor-pointer w-24 md:w-32 h-6 md:h-8 lg:h-10'
                         />
                     </form>
 
-                    <div className='hidden md:block w-fit'>
+                    <div className='hidden md:flex md:gap-6 lg:gap-0 items-center lg:block w-fit'>
                         {/* Shoping Cart logo */}
                         <ShoppingCart handleMyListsButton={handleMyListsButton} />
+
+                        {/* NavLinks and Dropdown Menu for small devices */}
+                        <nav className='block lg:hidden relative'>
+                            <span onClick={handleShowNav}>
+                                <TbMenuDeep className='text-2xl' />
+                            </span>
+                            <NavLinks showNav={showNav} handleHideNav={handleHideNav} />
+                        </nav>
                     </div>
                 </div>
 
