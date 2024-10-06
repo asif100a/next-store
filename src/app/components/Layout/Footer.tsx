@@ -5,17 +5,17 @@ import Link from 'next/link';
 
 const Footer: FC = () => {
     return (
-        <footer className='bg-[#f6efef] py-3'>
-            <div className='space-y-4 w-full overflow-hidden lg:w-[996px] xl:w-[1248px] mx-auto'>
+        <footer className='bg-[#f6efef] py-3 px-2 lg:px-0'>
+            <div className='space-y-3 lg:space-y-4 w-full overflow-hidden lg:w-[996px] xl:w-[1248px] mx-auto'>
                 <Image
                     src={nextStoreLogoLight}
                     alt="NextStore"
                     className='w-24 h-auto'
                     priority
                 />
-                <div className='flex justify-between gap-12'>
-                    <div className='space-y-6'>
-                        <p className='w-80'>NextStore is your go-to destination for high-quality products, from cars to mobile phones. Explore a wide range of items at competitive prices and enjoy seamless shopping, fast delivery, and exceptional customer service.</p>
+                <div className='flex flex-col lg:flex-row justify-between gap-6 lg:gap-12'>
+                    <div className='space-y-3 lg:space-y-6'>
+                        <p className='w-full lg:w-80'>NextStore is your go-to destination for high-quality products, from cars to mobile phones. Explore a wide range of items at competitive prices and enjoy seamless shopping, fast delivery, and exceptional customer service.</p>
 
                         <ul className='flex items-center gap-6 lg:gap-5 xl:gap-6'>
                             <li>
@@ -32,7 +32,7 @@ const Footer: FC = () => {
                             </li>
                         </ul>
                     </div>
-                    <nav className='flex flex-1 justify-between'>
+                    <nav className='grid grid-cols-5 border w-full'>
                         {quickLinks}
                         {accountRelatedLinks}
                         {legalLinks}
