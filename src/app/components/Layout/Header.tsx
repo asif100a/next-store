@@ -70,20 +70,20 @@ const Header: React.FC = () => {
                     </div>
                 </div>
 
-                <div className='block md:flex md:gap-6 md:items-center mt-3 md:mt-0'>
-                    <form onSubmit={handleSearch} action="" className='border border-[#dd37fc] rounded-full overflow-hidden flex gap-3 w-full md:w-80 lg:w-96 py-1 px-1'>
+                <div className='block md:flex md:gap-6 lg:gap-5 xl:gap-6 md:items-center mt-3 md:mt-0'>
+                    <form onSubmit={handleSearch} action="" className='border border-[#dd37fc] rounded-full overflow-hidden flex gap-3 w-full md:w-80 xl:w-96 py-1 px-1'>
                         <input
                             type="text"
                             name="searchProduct"
                             id="searchProduct"
                             spellCheck={true}
                             placeholder='Search your favourite product'
-                            className='focus:outline-none bg-inherit text-[#6593fc] text-xs md:text-sm font-bold w-full h-6 md:h-8 lg:h-10 ml-2'
+                            className='focus:outline-none bg-inherit text-[#6593fc] text-xs md:text-sm font-bold w-full h-6 md:h-8 xl:h-10 ml-2'
                         />
                         <input
                             type="submit"
                             value={'Search'}
-                            className='focus:outline-none bg-[#dd37fc] rounded-full text-[#161616] text-xs md:text-sm font-bold hover:cursor-pointer w-24 md:w-32 h-6 md:h-8 lg:h-10'
+                            className='focus:outline-none bg-[#dd37fc] rounded-full text-[#161616] text-xs md:text-sm font-bold hover:cursor-pointer w-24 md:w-32 h-6 md:h-8 xl:h-10'
                         />
                     </form>
 

@@ -10,10 +10,9 @@ interface NavLinksProps {
 
 const NavLinks: React.FC<NavLinksProps> = ({showNav, handleHideNav}) => {
     const pathName: string = usePathname();
-    // console.log(pathName); 
 
     return (
-        <ul className={`gap-6 text-sm bg-inherit lg:flex lg:flex-row blur-sidebar ${showNav ? 'flex flex-col h-screen w-[50%] md:w-[40%] px-6 py-3 blur-sidebar-active' : ''}`}>
+        <ul className={`gap-6 lg:gap-5 xl:gap-6 text-sm bg-inherit lg:flex lg:flex-row blur-sidebar ${showNav ? 'flex flex-col h-screen w-[50%] md:w-[40%] px-6 py-3 blur-sidebar-active' : ''}`}>
             {
                 showNav && <li>
                     <BiX onClick={handleHideNav} className='text-2xl' />
