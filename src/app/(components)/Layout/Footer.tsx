@@ -6,7 +6,7 @@ import { MdOutlineLanguage } from 'react-icons/md';
 
 const Footer: FC = () => {
     return (
-        <footer className='bg-[#f6efef] py-3 px-2 lg:px-0'>
+        <footer className='bg-[#f6efef] py-3 px-2 md:px-3 lg:px-0'>
             <div className='space-y-3 lg:space-y-4 w-full overflow-hidden lg:w-[996px] xl:w-[1248px] mx-auto'>
                 <Image
                     src={nextStoreLogoLight}
@@ -33,6 +33,7 @@ const Footer: FC = () => {
                             </li>
                         </ul>
 
+                        {/* For Large Device */}
                         <div className='lg:flex lg:justify-start lg:items-center hidden'>
                             <div className='text-start border-t-4 border-double border-[#dd37fc4d] px-0 flex flex-row justify-between gap-0 lg:gap-6'>
                                 <p className='flex gap-1 justify-center items-center'><span><MdOutlineLanguage /></span><small>English</small></p>
@@ -48,7 +49,9 @@ const Footer: FC = () => {
                         {categoriesLinks}
                     </nav>
                 </div>
-                <div className='w-full lg:hidden'>
+
+                {/* For Small & Medium Devices */}
+                <div className='w-full lg:hidden pt-1'>
                     <div className='text-center border-t-4 border-double border-[#dd37fc4d] px-0 md:px-3 flex flex-row justify-between gap-0 lg:gap-6'>
                         <p className='flex gap-1 justify-center items-center'><span><MdOutlineLanguage /></span><small>English</small></p>
                         <p><small>&copy; 2024 NextStore.com</small></p>
@@ -60,8 +63,8 @@ const Footer: FC = () => {
 };
 
 const quickLinks: JSX.Element = <>
-    <div className='text-sm'>
-        <h4 className='mb-4 font-bold text-[#6593fc]'>Quick Links</h4>
+    <div className='text-xs md:text-sm'>
+        <h4 className='mb-3 md:mb-4 font-bold text-[#6593fc]'>Quick Links</h4>
         <ul className='flex flex-col gap-2'>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Home</Link></li>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Shop</Link></li>
@@ -76,8 +79,8 @@ const quickLinks: JSX.Element = <>
 </>;
 
 const accountRelatedLinks: JSX.Element = <>
-    <div className='text-sm'>
-        <h4 className='mb-4 font-bold text-[#6593fc]'>Account Related</h4>
+    <div className='text-xs md:text-sm'>
+        <h4 className='mb-3 md:mb-4 font-bold text-[#6593fc]'>Account Related</h4>
         <ul className='flex flex-col gap-2'>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>My Account</Link></li>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Order History</Link></li>
@@ -89,8 +92,8 @@ const accountRelatedLinks: JSX.Element = <>
 </>;
 
 const legalLinks: JSX.Element = <>
-    <div className='text-sm'>
-        <h4 className='mb-4 font-bold text-[#6593fc]'>Legal Links</h4>
+    <div className='text-xs md:text-sm'>
+        <h4 className='mb-3 md:mb-4 font-bold text-[#6593fc]'>Legal Links</h4>
         <ul className='flex flex-col gap-2'>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Privacy Policy</Link></li>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Terms of Service</Link></li>
@@ -100,8 +103,8 @@ const legalLinks: JSX.Element = <>
 </>;
 
 const customerSupportLinks: JSX.Element = <>
-    <div className='text-sm'>
-        <h4 className='mb-4 font-bold text-[#6593fc]'>Customer Supports</h4>
+    <div className='text-xs md:text-sm'>
+        <h4 className='mb-3 md:mb-4 font-bold text-[#6593fc]'>Customer Supports</h4>
         <ul className='flex flex-col gap-2'>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Support Center</Link></li>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Live Chat</Link></li>
@@ -111,8 +114,8 @@ const customerSupportLinks: JSX.Element = <>
 </>;
 
 const categoriesLinks: JSX.Element = <>
-    <div className='text-sm'>
-        <h4 className='mb-4 font-bold text-[#6593fc]'>Categories</h4>
+    <div className='text-xs md:text-sm'>
+        <h4 className='mb-3 md:mb-4 font-bold text-[#6593fc]'>Categories</h4>
         <ul className='flex flex-col gap-2'>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Cars</Link></li>
             <li><Link href='' className='hover:text-[#6593fc] hover:underline'>Motor Bikes</Link></li>
