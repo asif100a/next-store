@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import React, { FC } from 'react';
-import nextStoreLogoLight from '../../assets/NextStore-light-footer.png';
 import Link from 'next/link';
+import React, { FC } from 'react';
 import { MdOutlineLanguage } from 'react-icons/md';
+import nextStoreLogoLight from '@/app/assets/NextStore-light.png';
 
 const Footer: FC = () => {
     return (
