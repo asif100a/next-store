@@ -16,8 +16,11 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "NextStore",
-  description: "An e-commerce website offering a wide range of products including cars, motorbikes, and electronics",
+  title: {
+    default: 'NextStore',
+    template: '%s - NextStore'
+  },
+  description: "An e-commerce website offering a wide range of products including cars, motorbikes, and electronics like mobile, laptop, desktop, computer",
 };
 
 export default function RootLayout({

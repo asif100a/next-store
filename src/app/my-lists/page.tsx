@@ -1,4 +1,10 @@
+import { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+    title: 'My Lists',
+    description: 'A list of selected products'
+};
 
 const page: React.FC = () => {
     return (
