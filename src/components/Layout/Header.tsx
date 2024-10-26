@@ -1,7 +1,6 @@
 "use client";
 import Image from 'next/image';
 import React, { useState } from 'react';
-import nextStoreLogoLight from '@/app/assets/NextStore-light.png';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import NavLinks from '../UI-parts/NavLinks';
@@ -48,8 +47,10 @@ const Header: React.FC = () => {
                     <div className='mb-1 md:mb-0'>
                         <Link href={'/'}>
                             <Image
-                                src={nextStoreLogoLight}
+                                src='/images/NextStore_logo.png'
                                 alt='NextStore'
+                                width={96}
+                                height={72}
                                 className='w-16 md:w-20 xl:w-24 h-auto'
                                 priority
                             />

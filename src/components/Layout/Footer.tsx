@@ -2,15 +2,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { MdOutlineLanguage } from 'react-icons/md';
-import nextStoreLogoLight from '@/app/assets/NextStore-light.png';
 
 const Footer: FC = () => {
     return (
         <footer className='bg-[#f6efef] py-3 px-2 md:px-3 lg:px-0'>
             <div className='space-y-3 lg:space-y-4 w-full overflow-hidden lg:w-[996px] xl:w-[1248px] mx-auto'>
                 <Image
-                    src={nextStoreLogoLight}
+                    src="/images/NextStore_logo.png"
                     alt="NextStore"
+                    width={96}
+                    height={72}
                     className='w-24 h-auto'
                     priority
                 />
