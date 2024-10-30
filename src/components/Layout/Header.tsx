@@ -1,17 +1,21 @@
 "use client";
-import Image from 'next/image';
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import NavLinks from '../UI-parts/NavLinks';
 import { TbMenuDeep } from 'react-icons/tb';
 import ShoppingCart from '../UI-parts/ShoppingCart';
+import Logo from '../UI-parts/Logo';
+import { useSession } from 'next-auth/react';
 
 const Header: React.FC = () => {
+    // Hooks
     const router = useRouter();
+    const session = useSession();
+    console.log(session);
     // States
     // const [searchText, setSearchText] = useState<string>('');
     const [showNav, setShowNav] = useState<boolean>(false);
+
 
     // Implement the search functionality
     const handleSearch = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -45,16 +49,7 @@ const Header: React.FC = () => {
                 <div className='flex justify-between md:block px-2 md:px-0 shadow-md shadow-[#6593fc] md:shadow-none'>
                     {/* Logo */}
                     <div className='mb-1 md:mb-0'>
-                        <Link href={'/'}>
-                            <Image
-                                src='/images/NextStore_logo.png'
-                                alt='NextStore'
-                                width={96}
-                                height={72}
-                                className='w-16 md:w-20 xl:w-24 h-auto'
-                                priority
-                            />
-                        </Link>
+                        <Logo />
                     </div>
 
                     <div className='flex items-center gap-6 w-fit md:hidden'>
@@ -66,7 +61,11 @@ const Header: React.FC = () => {
                             <span onClick={handleShowNav}>
                                 <TbMenuDeep className='text-lg' />
                             </span>
-                            <NavLinks showNav={showNav} handleHideNav={handleHideNav} />
+                            <NavLinks
+                                showNav={showNav}
+                                handleHideNav={handleHideNav}
+                                session={session}
+                            />
                         </nav>
                     </div>
                 </div>
@@ -78,7 +77,7 @@ const Header: React.FC = () => {
                             name="searchProduct"
                             id="searchProduct"
                             spellCheck={true}
-                            placeholder='Search your favourite product'
+                            placeholder='Search your favorite product'
                             className='focus:outline-none bg-inherit text-[#6593fc] text-xs md:text-sm font-bold w-full h-6 md:h-8 xl:h-10 ml-2'
                         />
                         <input
@@ -97,7 +96,11 @@ const Header: React.FC = () => {
                             <span onClick={handleShowNav}>
                                 <TbMenuDeep className='text-2xl' />
                             </span>
-                            <NavLinks showNav={showNav} handleHideNav={handleHideNav} />
+                            <NavLinks
+                                showNav={showNav}
+                                handleHideNav={handleHideNav}
+                                session={session}
+                            />
                         </nav>
                     </div>
                 </div>
@@ -105,7 +108,11 @@ const Header: React.FC = () => {
 
                 {/* NavLinks for Large Devices */}
                 <nav className='hidden lg:block'>
-                    <NavLinks showNav={showNav} handleHideNav={handleHideNav} />
+                    <NavLinks
+                        showNav={showNav}
+                        handleHideNav={handleHideNav}
+                        session={session}
+                    />
                 </nav>
             </div>
         </header>

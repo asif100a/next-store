@@ -8,7 +8,7 @@ interface NavLinksProps {
     handleHideNav: () => void;
 };
 
-const NavLinks: React.FC<NavLinksProps> = ({showNav, handleHideNav}) => {
+const NavLinks: React.FC<NavLinksProps> = ({ showNav, handleHideNav, session }) => {
     const pathName: string = usePathname();
 
     return (
@@ -63,16 +63,24 @@ const NavLinks: React.FC<NavLinksProps> = ({showNav, handleHideNav}) => {
                     Contact Us
                 </Link>
             </li>
-            <li>
-                <Link href={'/login'} className={pathName === '/login' ? 'text-[#6593fc]' : 'text-black'}>
-                    Login
-                </Link>
-            </li>
-            <li>
-                <Link href={'/sign-up'} className={pathName === '/sign-up' ? 'text-[#6593fc]' : 'text-black'}>
-                    Sign Up
-                </Link>
-            </li>
+            {
+                session.status === 'authenticated' ?
+                    <li>
+                        <button>Logout</button>
+                    </li>
+                    : <>
+                        <li>
+                            <Link href={'/login'} className={pathName === '/login' ? 'text-[#6593fc]' : 'text-black'}>
+                                Login
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href={'/sign-up'} className={pathName === '/sign-up' ? 'text-[#6593fc]' : 'text-black'}>
+                                Sign Up
+                            </Link>
+                        </li>
+                    </>
+            }
         </ul>
     );
 };
