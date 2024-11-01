@@ -44,7 +44,9 @@ export default function RootLayout({
           {/* Header Component */}
           <Header />
           {/* Main Component */}
-          {children}
+          <main className="w-auto lg:w-[996px] xl:w-[1248px] mx-auto py-6 min-h-[calc(100vh-445.9px)]">
+            {children}
+          </main>
           {/* Footer Component */}
           <Footer />
         </AuthProvider>
