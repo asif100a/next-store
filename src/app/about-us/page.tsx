@@ -1,3 +1,7 @@
+import OurImpact from '@/components/UI-parts/For_AboutUs/OurImpact';
+import OurPlanet from '@/components/UI-parts/For_AboutUs/OurPlanet';
+import WhatWeDo from '@/components/UI-parts/For_AboutUs/WhatWeDo';
+import WhoWeAre from '@/components/UI-parts/For_AboutUs/WhoWeAre';
 import { Metadata } from 'next';
 import React from 'react';
 
@@ -9,7 +13,10 @@ export const metadata: Metadata = {
 const page = () => {
     return (
         <section>
-            <h1>This is About Us page.</h1>
+            <WhoWeAre />
+            <WhatWeDo />
+            <OurImpact />
+            <OurPlanet />
         </section>
     );
 };

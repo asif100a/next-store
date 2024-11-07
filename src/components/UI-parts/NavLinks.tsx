@@ -1,3 +1,4 @@
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import *as React from 'react';
@@ -59,14 +60,14 @@ const NavLinks: React.FC<NavLinksProps> = ({ showNav, handleHideNav, session }) 
                 </ul>
             </li>
             <li>
-                <Link href={'/contact-us'} className={pathName === '/contact-us' ? 'text-[#6593fc]' : 'text-black'}>
-                    Contact Us
+                <Link href={'/about-us'} className={pathName === '/contact-us' ? 'text-[#6593fc]' : 'text-black'}>
+                    About Us
                 </Link>
             </li>
             {
                 session.status === 'authenticated' ?
                     <li>
-                        <button>Logout</button>
+                        <button onClick={() => signOut()}>Logout</button>
                     </li>
                     : <>
                         <li>
