@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const page = () => {
     return (
-        <section>
+        <section className='space-y-6'>
             <WhoWeAre />
             <WhatWeDo />
             <OurImpact />
