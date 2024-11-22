@@ -1,3 +1,4 @@
+import SignUp from '@/components/Sections/SignUp';
 import { Metadata } from 'next';
 import React from 'react';
 
@@ -9,9 +10,9 @@ export const metadata: Metadata = {
 
 const page: React.FC = () => {
     return (
-        <section>
-            <h1>This is Sign Un page</h1>
-        </section>
+        <>
+            <SignUp />
+        </>
     );
 };
 
