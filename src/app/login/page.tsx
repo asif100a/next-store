@@ -1,3 +1,4 @@
+import Login from '@/components/Sections/Login';
 import { Metadata } from 'next';
 import React from 'react';
 
@@ -7,10 +8,11 @@ export const metadata: Metadata = {
 };
 
 const LoginPage: React.FC = () => {
+
     return (
-        <section>
-            <h1>This is Login Page</h1>
-        </section>
+        <>
+            <Login />
+        </>
     );
 };
 
