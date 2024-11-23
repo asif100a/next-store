@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import AuthProvider from "@/services/AuthProvider/AuthProvider";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -49,6 +50,8 @@ export default function RootLayout({
           </main>
           {/* Footer Component */}
           <Footer />
+          {/* React-Hot-Toast container */}
+          <Toaster />
         </AuthProvider>
       </body>
     </html>

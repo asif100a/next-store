@@ -22,8 +22,6 @@ const connectDB = async(): Promise<Db> => {
                 }
             });
 
-            // Connect the db
-            await client.connect();
             // Now, define the db
             db = client.db("NextStore");
             return db;

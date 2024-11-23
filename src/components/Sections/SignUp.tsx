@@ -2,30 +2,46 @@
 
 import axios from 'axios';
 import React, { FormEvent } from 'react';
+import toast from 'react-hot-toast';
+
+interface ErrorResponse {
+    error: string;
+}
 
 const SignUp: React.FC = () => {
 
     // Handle the form submission
-    const handleFormSubmission = async(event: FormEvent<HTMLFormElement>) => {
+    const handleFormSubmission = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
+        const name = formData.get('name');
         const email = formData.get('email');
         const password = formData.get('password');
-        console.table({email, password});
+        console.table({ email, password });
 
-        // Sign up the user
-        const response = await axios.post('http://localhost:3000/sign-up/api', {email, password});
-        
-        // Now, reset the input fields
-        if(response.status === 200) {
-            const form = event.target as HTMLFormElement;
-            form.reset();
+        try {
+            // Sign up the user
+            const response = await axios.post('http://localhost:3000/sign-up/api', { name, email, password });
+
+            // Now, reset the input fields
+            if (response.status === 200) {
+                const form = event.target as HTMLFormElement;
+                form.reset();
+                toast.success('You have signed up successfully');
+            }
+        } catch(error) {
+            if(axios.isAxiosError<ErrorResponse>(error) && error.response) {
+                if(error.response.status === 409) {
+                    console.log(error.response.data.error); // Accessing 'error' directly
+                    toast.error(error.response.data.error);
+                }
+            }
         }
     }
 
     return (
-        <section>
+        <section className='w-full h-full flex justify-center items-center'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl box-border border border-[#6593fc66]">
                 <h1 className="text-2xl font-bold text-center">Sign Up</h1>
 
