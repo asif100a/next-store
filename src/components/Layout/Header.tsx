@@ -107,7 +107,7 @@ const Header: React.FC = () => {
 
 
                 {/* NavLinks for Large Devices */}
-                <nav className='hidden lg:block'>
+                <nav className='lg:block'>
                     <NavLinks
                         showNav={showNav}
                         handleHideNav={handleHideNav}
