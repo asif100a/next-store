@@ -1,71 +1,78 @@
-import NextAuth, { NextAuthOptions, User } from "next-auth";
+import connectDB from "@/lib/connectDB";
+import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from 'bcryptjs'
+import { Db } from "mongodb";
 
-// Extend the user interface to include the role
-declare module "next-auth" {
-    interface Session {
-        user: {
-            name?: string | null;
-            email?: string | null;
-            image?: string | null;
-            role?: string;
-        };
-    }
-
-    interface User {
-        role?: string;
-    }
-
-};
-
-// Extend the jwt to include the role
-declare module "next-auth/jwt" {
-    interface JWT {
-        role?: string;
-    }
+// Define the interface of Current user that are from the db
+interface CurrentUser {
+    _id: string;
+    name: string;
+    email: string;
+    password: string;
 }
 
-export const authOptions: NextAuthOptions = {
-    secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
+const options: AuthOptions = {
     session: {
         strategy: 'jwt',
-        maxAge: 20 * 24 * 60 * 60
+        maxAge: 30 * 24 * 60 * 60,
     },
     providers: [
         CredentialsProvider({
             credentials: {
-                email: { label: 'Email', type: 'email', required: true, placeholder: 'Your email address' },
-                password: { label: 'Password', type: 'password', required: true, placeholder: 'Your password' },
-                image: { label: 'Image', type: 'text', required: true, placeholder: 'Your image url' },
+                email: {},
+                password: {},
             },
             async authorize(credentials) {
-                if (!credentials) {
+                // Check if the credentials is exist
+                if(!credentials) {
+                    throw new Error('Email and Password fields are required.');
+                }
+                const { email, password } = credentials;
+                console.log(email, password);
+                // Throw an Error if email or password are undefined
+                if (!email || !password) {
+                    throw new Error('Email and Password fields are required.');
+                }
+
+                try {
+                    // Match email with db
+                    const db: Db = await connectDB();
+                    const userCollection = db.collection('users');
+                    const currentUser = await userCollection.findOne<CurrentUser>({ email });
+                    // Throw an Error if user is not exist in the db
+                    if (!currentUser) {
+                        throw new Error('User is not found')
+                    }
+                    console.log({currentUser});
+
+                    // Now, match provided password to currentUser's password
+                    const matchedPassword = await bcrypt.compare(password, currentUser?.password);
+                    console.log({matchedPassword});
+                    // Throw an error if the provided password is not correct
+                    if(!matchedPassword) {
+                        throw new Error('Wrong password');
+                    }
+
+                    return {
+                        id: currentUser?._id,
+                        name: currentUser?.name,
+                        email: currentUser?.email
+                    }
+
+                } catch (error) {
+                    console.log(error);
                     return null;
                 }
-                else {
-                    const user: User = { id: '1', name: 'user', role: 'admin', email: credentials?.email, image: credentials?.image };
-                    return user;
-                }
-            }
+            },
         })
     ],
-    callbacks: {
-        async jwt({ token, user, account }) {
-            if (account) {
-                token.role = user.role;
-            }
-            return token;
-        },
-        async session({ session, token }) {
-            // If session.user exits, add the role
-            if (session.user) {
-                session.user.role = token.role;
-            }
-            return session;
-        },
-    }
+    callbacks: {},
+    pages: {
+        signIn: '/login',
+    },
 };
 
-const handler = NextAuth(authOptions);
+const handler = NextAuth(options);
 
 export { handler as GET, handler as POST };

@@ -1,21 +1,29 @@
 "use client";
 
+import { signIn } from 'next-auth/react';
 import React, { FormEvent } from 'react';
 
 const Login: React.FC = () => {
 
     // Handle the form submission
-    const handleFormSubmission = (event: FormEvent<HTMLFormElement>) => {
+    const handleFormSubmission = async(event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
         const email = formData.get('email');
         const password = formData.get('password');
         console.table({email, password});
+
+        const response = await signIn('credentials', {
+            email,
+            password,
+            redirect: false
+        });
+        console.log(response);
     }
 
     return (
-        <section>
+        <section className='w-full h-full flex justify-center items-center'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl box-border border border-[#6593fc66]">
                 <h1 className="text-2xl font-bold text-center">Login</h1>
 
@@ -53,7 +61,7 @@ const Login: React.FC = () => {
                     <input
                         type='submit'
                         value={'Sign in'}
-                        className="block w-full p-3 text-center rounded-sm bg-[#6593fc] text-white"
+                        className="block w-full p-3 text-center rounded-md bg-[#6593fc] text-white cursor-pointer"
                     />
                 </form>
 

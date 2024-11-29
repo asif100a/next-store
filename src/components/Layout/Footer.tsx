@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { FC } from 'react';
+import React, { FC, type JSX } from 'react';
 import { MdOutlineLanguage } from 'react-icons/md';
 import Logo from '../UI-parts/Logo';
 
