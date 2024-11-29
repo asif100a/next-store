@@ -2,10 +2,11 @@ import connectDB from "@/lib/connectDB";
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcryptjs'
-import { Db } from "mongodb";
+import { Db, ObjectId } from "mongodb";
 
 // Define the interface of Current user that are from the db
 interface CurrentUser {
+    createdAt: ObjectId;
     _id: string;
     name: string;
     email: string;
@@ -25,7 +26,7 @@ const options: AuthOptions = {
             },
             async authorize(credentials) {
                 // Check if the credentials is exist
-                if(!credentials) {
+                if (!credentials) {
                     throw new Error('Email and Password fields are required.');
                 }
                 const { email, password } = credentials;
@@ -42,22 +43,23 @@ const options: AuthOptions = {
                     const currentUser = await userCollection.findOne<CurrentUser>({ email });
                     // Throw an Error if user is not exist in the db
                     if (!currentUser) {
-                        throw new Error('User is not found')
+                        throw new Error('User is not found');
                     }
-                    console.log({currentUser});
+                    console.log({ createdAtType: typeof currentUser.createdAt });
 
                     // Now, match provided password to currentUser's password
                     const matchedPassword = await bcrypt.compare(password, currentUser?.password);
-                    console.log({matchedPassword});
+                    console.log({ matchedPassword });
                     // Throw an error if the provided password is not correct
-                    if(!matchedPassword) {
+                    if (!matchedPassword) {
                         throw new Error('Wrong password');
                     }
 
                     return {
                         id: currentUser?._id,
                         name: currentUser?.name,
-                        email: currentUser?.email
+                        email: currentUser?.email,
+                        createdAt: currentUser?.createdAt
                     }
 
                 } catch (error) {

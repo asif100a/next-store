@@ -10,7 +10,7 @@ import { useSession } from 'next-auth/react';
 const Header: React.FC = () => {
     // Hooks
     const router = useRouter();
-    const session = useSession();
+    const {data: session, status} = useSession();
     console.log(session);
     // States
     // const [searchText, setSearchText] = useState<string>('');
@@ -64,7 +64,7 @@ const Header: React.FC = () => {
                             <NavLinks
                                 showNav={showNav}
                                 handleHideNav={handleHideNav}
-                                session={session}
+                                status={status}
                             />
                         </nav>
                     </div>
@@ -99,7 +99,7 @@ const Header: React.FC = () => {
                             <NavLinks
                                 showNav={showNav}
                                 handleHideNav={handleHideNav}
-                                session={session}
+                                status={status}
                             />
                         </nav>
                     </div>
@@ -111,7 +111,7 @@ const Header: React.FC = () => {
                     <NavLinks
                         showNav={showNav}
                         handleHideNav={handleHideNav}
-                        session={session}
+                        status={status}
                     />
                 </nav>
             </div>

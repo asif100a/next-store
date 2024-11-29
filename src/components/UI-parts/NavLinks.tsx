@@ -7,10 +7,12 @@ import { BiX } from 'react-icons/bi';
 interface NavLinksProps {
     showNav: boolean;
     handleHideNav: () => void;
+    status: string;
 };
 
-const NavLinks: React.FC<NavLinksProps> = ({ showNav, handleHideNav, session }) => {
+const NavLinks: React.FC<NavLinksProps> = ({ showNav, handleHideNav, status }) => {
     const pathName: string = usePathname();
+    console.log(status);
 
     return (
         <ul className={`gap-6 lg:gap-5 xl:gap-6 text-sm bg-inherit lg:flex lg:flex-row blur-sidebar ${showNav ? 'flex flex-col h-screen w-[50%] md:w-[40%] px-6 py-3 blur-sidebar-active' : ''}`}>
@@ -65,7 +67,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ showNav, handleHideNav, session }) 
                 </Link>
             </li>
             {
-                session.status === 'authenticated' ?
+                status === 'authenticated' ?
                     <li>
                         <button onClick={() => signOut()}>Logout</button>
                     </li>
