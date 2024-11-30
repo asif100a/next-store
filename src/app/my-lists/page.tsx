@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import React from 'react';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../api/auth/[...nextauth]/route';
 import Image from 'next/image';
+import { options } from '../api/auth/[...nextauth]/route';
 
 export const metadata: Metadata = {
     title: 'My Lists',
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const page: React.FC = async () => {
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(options);
     console.log('From my list page:', session);
 
     return (
