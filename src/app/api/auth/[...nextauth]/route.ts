@@ -6,11 +6,28 @@ import { Db, ObjectId } from "mongodb";
 
 // Define the interface of Current user that are from the db
 interface CurrentUser {
-    id: string;
+    _id: ObjectId;
     name: string;
     email: string;
     password: string;
     createdAt: ObjectId;
+}
+
+// Declare the next-auth types
+declare module "next-auth" {
+    interface User {
+        id: ObjectId;
+        createdAt: ObjectId;
+    }
+
+    interface Session {
+        user: User;
+    }
+
+    interface JWT {
+        id: ObjectId;
+        createdAt: ObjectId;
+    }
 }
 
 const options: AuthOptions = {
@@ -45,7 +62,7 @@ const options: AuthOptions = {
                     if (!currentUser) {
                         throw new Error('User is not found');
                     }
-                    console.log({ currentUser});
+                    console.log({ currentUser: typeof currentUser.createdAt});
 
                     // Now, match provided password to currentUser's password
                     const matchedPassword = await bcrypt.compare(password, currentUser?.password);
@@ -55,7 +72,7 @@ const options: AuthOptions = {
                         throw new Error('Wrong password');
                     }
 
-                    return currentUser;
+                    return {...currentUser, id: currentUser._id};
 
                 } catch (error) {
                     console.log(error);
@@ -66,20 +83,19 @@ const options: AuthOptions = {
     ],
     callbacks: {
         async jwt({token, user}) {
-            console.log("Token from callbacks:", token);
+            // Set User's id and createdAt property to the Token
             if(user) {
-                token.id = user._id;
-                console.log("User id from callbacks IF:", user._id);
+                token.id = user.id;
+                // console.log("User id from callbacks IF:", user._id);
                 token.createdAt = user.createdAt;
             }
 
             return token;
         },
         async session({session, token}) {
-            console.log({session, token});
-            // Set Token's _id and createdAt property to the Session
-            session.user.id = token.id;
-            session.user.createdAt = token.createdAt;
+            // Set Token's id and createdAt property to the Session
+            session.user.id = token.id as ObjectId;
+            session.user.createdAt = token.createdAt as ObjectId;
 
             return session;
         }
