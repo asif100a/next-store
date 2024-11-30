@@ -47,7 +47,6 @@ const options: AuthOptions = {
                     throw new Error('Email and Password fields are required.');
                 }
                 const { email, password } = credentials;
-                console.log(email, password);
                 // Throw an Error if email or password are undefined
                 if (!email || !password) {
                     throw new Error('Email and Password fields are required.');
@@ -62,7 +61,7 @@ const options: AuthOptions = {
                     if (!currentUser) {
                         throw new Error('User is not found');
                     }
-                    console.log({ currentUser: typeof currentUser.createdAt});
+                    // console.log({ currentUser: typeof currentUser.createdAt});
 
                     // Now, match provided password to currentUser's password
                     const matchedPassword = await bcrypt.compare(password, currentUser?.password);
@@ -72,6 +71,7 @@ const options: AuthOptions = {
                         throw new Error('Wrong password');
                     }
 
+                    // Return the current user with _id as id
                     return {...currentUser, id: currentUser._id};
 
                 } catch (error) {
