@@ -30,7 +30,7 @@ declare module "next-auth" {
     }
 }
 
-const options: AuthOptions = {
+export const options: AuthOptions = {
     session: {
         strategy: 'jwt',
         maxAge: 30 * 24 * 60 * 60,
