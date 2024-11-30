@@ -6,11 +6,11 @@ import { Db, ObjectId } from "mongodb";
 
 // Define the interface of Current user that are from the db
 interface CurrentUser {
-    createdAt: ObjectId;
-    _id: string;
+    id: string;
     name: string;
     email: string;
     password: string;
+    createdAt: ObjectId;
 }
 
 const options: AuthOptions = {
@@ -45,7 +45,7 @@ const options: AuthOptions = {
                     if (!currentUser) {
                         throw new Error('User is not found');
                     }
-                    console.log({ createdAtType: typeof currentUser.createdAt });
+                    console.log({ currentUser});
 
                     // Now, match provided password to currentUser's password
                     const matchedPassword = await bcrypt.compare(password, currentUser?.password);
@@ -55,12 +55,7 @@ const options: AuthOptions = {
                         throw new Error('Wrong password');
                     }
 
-                    return {
-                        id: currentUser?._id,
-                        name: currentUser?.name,
-                        email: currentUser?.email,
-                        createdAt: currentUser?.createdAt
-                    }
+                    return currentUser;
 
                 } catch (error) {
                     console.log(error);
@@ -69,7 +64,26 @@ const options: AuthOptions = {
             },
         })
     ],
-    callbacks: {},
+    callbacks: {
+        async jwt({token, user}) {
+            console.log("Token from callbacks:", token);
+            if(user) {
+                token.id = user._id;
+                console.log("User id from callbacks IF:", user._id);
+                token.createdAt = user.createdAt;
+            }
+
+            return token;
+        },
+        async session({session, token}) {
+            console.log({session, token});
+            // Set Token's _id and createdAt property to the Session
+            session.user.id = token.id;
+            session.user.createdAt = token.createdAt;
+
+            return session;
+        }
+    },
     pages: {
         signIn: '/login',
     },
