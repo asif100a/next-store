@@ -3,6 +3,7 @@
 import Login from '@/components/Sections/Login';
 // import { Metadata } from 'next';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import React, { FormEvent } from 'react';
 import toast from 'react-hot-toast';
 
@@ -12,6 +13,8 @@ import toast from 'react-hot-toast';
 // };
 
 const LoginPage: React.FC = () => {
+    const router = useRouter();
+
     // Handle the form submission
     const handleFormSubmission = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -31,6 +34,7 @@ const LoginPage: React.FC = () => {
             toast.error('Invalid email or password');
         }else if(response?.status === 200) {
             toast.success('Your have logged in successfully');
+            router.push('/');
         }
     }
 

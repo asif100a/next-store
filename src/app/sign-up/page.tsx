@@ -2,6 +2,7 @@
 
 import SignUp from '@/components/Sections/SignUp';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 // import { Metadata } from 'next';
 import React, { FormEvent } from 'react';
 import toast from 'react-hot-toast';
@@ -11,11 +12,13 @@ import toast from 'react-hot-toast';
 //     description: 'Sign up page of the NextStore app'
 // };
 
-interface ErrorResponse {
+type ErrorResponse = {
     error: string;
-}
+};
 
-const page: React.FC = () => {
+const SignUpPage: React.FC = () => {
+    const router = useRouter();
+
     // Handle the form submission
     const handleFormSubmission = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -24,7 +27,6 @@ const page: React.FC = () => {
         const name = formData.get('name');
         const email = formData.get('email');
         const password = formData.get('password');
-        console.table({ email, password });
 
         try {
             // Sign up the user
@@ -35,6 +37,7 @@ const page: React.FC = () => {
                 const form = event.target as HTMLFormElement;
                 form.reset();
                 toast.success('You have signed up successfully');
+                router.push('/');
             }
         } catch (error) {
             if (axios.isAxiosError<ErrorResponse>(error) && error.response) {
@@ -55,4 +58,4 @@ const page: React.FC = () => {
     );
 };
 
-export default page;
+export default SignUpPage;

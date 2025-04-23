@@ -3,7 +3,6 @@ import bcrypt from "bcryptjs";
 
 export const POST = async (request: Request) => {
     const newUser = await request.json();
-    console.log(newUser.password);
 
     // Check whether newUser is exist
     if (!newUser) {
@@ -15,7 +14,6 @@ export const POST = async (request: Request) => {
     try {
         const db = await connectDB();
         const userCollection = db.collection('users');
-        console.log({ userCollection });
 
         // First, check if user is exist before creating a new user
         const isExist = await userCollection.findOne({ email: newUser.email });
@@ -27,7 +25,6 @@ export const POST = async (request: Request) => {
 
         // Hash user password with bcryptJS
         const hashPassword = await bcrypt.hash(newUser.password, 12);
-        console.log('hash', { hashPassword });
 
         // // Now, save user data to the db
         await userCollection.insertOne({
