@@ -1,32 +1,15 @@
 "use client";
 
-import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 import React, { FormEvent } from 'react';
-import toast from 'react-hot-toast';
 
-const Login: React.FC = () => {
+interface LoginProps {
+    handleFormSubmission: (event: FormEvent<HTMLFormElement>) => Promise<void>;
+}
 
-    // Handle the form submission
-    const handleFormSubmission = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        const formData = new FormData(event.currentTarget);
-        const email = formData.get('email');
-        const password = formData.get('password');
-        console.table({ email, password });
-
-        const response = await signIn('credentials', {
-            email,
-            password,
-            redirect: false
-        });
-        // console.log(response);
-        if(response?.error) {
-            toast.error('Invalid email or password');
-        }else if(response?.status === 200) {
-            toast.success('Your have logged in successfully');
-        }
-    }
+const Login: React.FC<LoginProps> = ({
+    handleFormSubmission
+}) => {
 
     return (
         <section className='w-full h-full flex justify-center items-center'>
@@ -94,7 +77,7 @@ const Login: React.FC = () => {
                     </button>
                 </div>
                 <p className="text-xs text-center sm:px-6">{"Don't"} have an account?
-                    <a rel="noopener noreferrer" href="#" className="underline">Sign up</a>
+                    <Link rel="noopener noreferrer" href="/sign-up" className="underline">Sign up</Link>
                 </p>
             </div>
         </section>

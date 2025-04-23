@@ -1,44 +1,16 @@
 "use client";
 
-import axios from 'axios';
+import Link from 'next/link';
 import React, { FormEvent } from 'react';
-import toast from 'react-hot-toast';
 
-interface ErrorResponse {
-    error: string;
+// Define the interface of SignUp component
+interface SignUpProps {
+    handleFormSubmission: (event: FormEvent<HTMLFormElement>) => Promise<void>;
 }
 
-const SignUp: React.FC = () => {
-
-    // Handle the form submission
-    const handleFormSubmission = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        const formData = new FormData(event.currentTarget);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const password = formData.get('password');
-        console.table({ email, password });
-
-        try {
-            // Sign up the user
-            const response = await axios.post('http://localhost:3000/sign-up/api', { name, email, password });
-
-            // Now, reset the input fields
-            if (response.status === 200) {
-                const form = event.target as HTMLFormElement;
-                form.reset();
-                toast.success('You have signed up successfully');
-            }
-        } catch(error) {
-            if(axios.isAxiosError<ErrorResponse>(error) && error.response) {
-                if(error.response.status === 409) {
-                    console.log(error.response.data.error); // Accessing 'error' directly
-                    toast.error(error.response.data.error);
-                }
-            }
-        }
-    }
+const SignUp: React.FC<SignUpProps> = ({
+    handleFormSubmission
+}) => {
 
     return (
         <section className='w-full h-full flex justify-center items-center'>
@@ -118,7 +90,7 @@ const SignUp: React.FC = () => {
                     </button>
                 </div>
                 <p className="text-xs text-center sm:px-6">{"Don't"} have an account?
-                    <a rel="noopener noreferrer" href="#" className="underline">Sign up</a>
+                    <Link rel="noopener noreferrer" href="/login" className="underline">Sign up</Link>
                 </p>
             </div>
         </section>

@@ -1,17 +1,17 @@
-import { Metadata } from 'next';
+"use client";
+
+// import { Metadata } from 'next';
 import React from 'react';
-import { getServerSession } from 'next-auth';
 import Image from 'next/image';
-import { options } from '../api/auth/[...nextauth]/route';
+import { useSession } from 'next-auth/react';
 
-export const metadata: Metadata = {
-    title: 'My Lists',
-    description: 'A list of selected products'
-};
+// export const metadata: Metadata = {
+//     title: 'My Lists',
+//     description: 'A list of selected products'
+// };
 
-const page: React.FC = async () => {
-    const session = await getServerSession(options);
-    console.log('From my list page:', session);
+const MyList: React.FC = () => {
+    const {data: session} = useSession();
 
     return (
         <section >
@@ -30,4 +30,4 @@ const page: React.FC = async () => {
     );
 };
 
-export default page;
+export default MyList;

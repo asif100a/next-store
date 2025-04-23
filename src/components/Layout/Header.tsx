@@ -10,12 +10,10 @@ import { useSession } from 'next-auth/react';
 const Header: React.FC = () => {
     // Hooks
     const router = useRouter();
-    const {data: session, status} = useSession();
-    console.log(session);
+    const { status } = useSession();
     // States
     // const [searchText, setSearchText] = useState<string>('');
     const [showNav, setShowNav] = useState<boolean>(false);
-
 
     // Implement the search functionality
     const handleSearch = (e: React.FormEvent<HTMLFormElement>): void => {
