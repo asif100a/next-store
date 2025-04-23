@@ -1,25 +1,23 @@
+"use client";
+
 import Image from 'next/image';
-import React, { FC } from 'react';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import React from 'react';
 import { IoStar } from 'react-icons/io5';
 import SeeMoreBtn from '../UI-parts/SeeMoreButton';
 
-const ForYou: FC = () => {
+const FlashSale: React.FC = () => {
     const productTitle = "Rescue Bots Deformation Transformer Car One-Step Car Robot Vehicle Model Action Figures Toy Transform Car for Kids";
 
-    const cards = Array.from(Array(6));
+    const cards = Array.from(Array(5));
 
     return (
-        <section className='mx-2 md:mx-3 lg:mx-auto mt-8 bg-white p-4 rounded-md'>
-            <div className='flex justify-between items-center'>
-                <h1 className='text-xl lg:text-2xl font-medium mb-2'>For You</h1>
-                <div className='hidden md:flex justify-between items-center gap-6'>
-                    <button><IoIosArrowBack className='hover:text-orange-400 text-lg' /></button>
-                    <button><IoIosArrowForward className='hover:text-orange-400 text-lg' /></button>
-                </div>
+        <section className='mx-2 md:mx-3 lg:mx-auto bg-white p-4 rounded-md'>
+            <h1 className='text-xl lg:text-2xl font-medium mb-2'>Flash Sale</h1>
+            <div className='flex justify-between items-center gap-6 mb-3'>
+                <p>On sale now</p>
+                <button className='box-border border border-[#dd37fc4d] rounded-sm px-2 md:px-3 py-[2px] md:py-1 text-[#dd37fc] text-xs md:text-base font-bold'>See All Products</button>
             </div>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-fit gap-2 md:gap-3 mx-auto'>
-                {/* Cards */}
                 {cards.map((_, index) => (
                     <div key={index}>
                         <div className='border border-[#dd37fc4d] rounded-sm w-full lg:w-60 p-2 md:p-3 space-y-2'>
@@ -59,4 +57,4 @@ const ForYou: FC = () => {
     );
 };
 
-export default ForYou;
+export default FlashSale;
