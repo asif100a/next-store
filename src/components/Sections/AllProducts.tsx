@@ -1,22 +1,35 @@
 "use client";
 
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { IoStar } from 'react-icons/io5';
-import SeeMoreBtn from '../UI-parts/SeeMoreButton';
-import Link from 'next/link';
 
-const FlashSale: React.FC = () => {
-    const productTitle = "Rescue Bots Deformation Transformer Car One-Step Car Robot Vehicle Model Action Figures Toy Transform Car for Kids";
+// interface Card {
+//     image: string;
+//     title: string;
+//     price: string;
+//     rating: string;
+// };
 
-    const cards = Array.from(Array(5));
+// Define the type of AllProducts component props
+interface AllProductsProps {
+    productTitle: string;
+    cards: number[];
+};
+
+const AllProducts: React.FC<AllProductsProps> = ({
+    productTitle,
+    cards
+}) => {
+    console.log("cards: ", cards);
 
     return (
         <section className='mx-2 md:mx-3 lg:mx-auto bg-white p-4 rounded-md'>
-            <h1 className='text-xl lg:text-2xl font-medium mb-2'>Flash Sale</h1>
-            <div className='flex justify-between items-center gap-6 mb-3'>
-                <p>On sale now</p>
-                <button className='box-border border border-[#dd37fc4d] rounded-sm px-2 md:px-3 py-[2px] md:py-1 text-[#dd37fc] hover:bg-[#dd37fc] hover:text-white text-xs md:text-base font-bold'>See All Products</button>
+            <div className='flex justify-between items-center gap-6 mb-4'>
+            <h1 className='text-xl lg:text-2xl font-medium'>All Products</h1>
+                <p>Choose your favorite item from here</p>
+                {/* <button className='box-border border border-[#dd37fc4d] rounded-sm px-2 md:px-3 py-[2px] md:py-1 text-[#dd37fc] hover:bg-[#dd37fc] hover:text-white text-xs md:text-base font-bold'>See All Products</button> */}
             </div>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-fit gap-2 md:gap-3 mx-auto'>
                 {cards.map((_, index) => (
@@ -53,11 +66,11 @@ const FlashSale: React.FC = () => {
                     </div>
                 ))}
             </div>
-            <div className='block lg:hidden text-center mt-2'>
-                <SeeMoreBtn />
+            <div className='block text-center mt-4'>
+                <button className='box-border border border-[#dd37fc4d] px-4 py-2 text-base text-[#dd37fc] hover:bg-[#dd37fc] hover:text-white font-bold'>See More</button>
             </div>
         </section>
     );
 };
 
-export default FlashSale;
+export default AllProducts;

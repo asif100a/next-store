@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { FC } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { IoStar } from 'react-icons/io5';
-import SeeMoreBtn from '../UI-parts/SeeMoreButton';
+import SeeMoreBtn from '../../UI-parts/SeeMoreButton';
 import Link from 'next/link';
 
 const ForYou: FC = () => {
@@ -15,8 +15,8 @@ const ForYou: FC = () => {
             <div className='flex justify-between items-center'>
                 <h1 className='text-xl lg:text-2xl font-medium mb-2'>For You</h1>
                 <div className='hidden md:flex justify-between items-center gap-6'>
-                    <button><IoIosArrowBack className='hover:text-orange-400 text-lg' /></button>
-                    <button><IoIosArrowForward className='hover:text-orange-400 text-lg' /></button>
+                    <button className='border border-[#dd37fc] hover:bg-[#dd37fc] text-[#dd37fc] hover:text-white rounded-sm'><IoIosArrowBack className='text-lg' /></button>
+                    <button className='border border-[#dd37fc] hover:bg-[#dd37fc] text-[#dd37fc] hover:text-white rounded-sm'><IoIosArrowForward className='text-lg' /></button>
                 </div>
             </div>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-fit gap-2 md:gap-3 mx-auto'>
