@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const Categories: React.FC = () => {
@@ -10,8 +11,11 @@ const Categories: React.FC = () => {
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-fit gap-2 md:gap-3 mx-auto'>
                 {/* Cards */}
                 {cards.map((_, idx) => (
-                    <div key={idx}>
-                        <div className='border border-[#dd37fc4d] rounded-sm w-full lg:w-60 p-2 md:p-3 space-y-2'>
+                    <Link
+                        key={idx}
+                        href={'?'}
+                    >
+                        <div className='border border-[#dd37fc4d] rounded-sm w-full lg:w-60 p-2 md:p-3 space-y-2 hover:shadow-md hover:shadow-[#dd37fc4d]'>
                             <Image
                                 src='https://i.ibb.co/pWSZJLH/maxresdefault-2.jpg'
                                 alt='car'
@@ -22,7 +26,7 @@ const Categories: React.FC = () => {
                             />
                             <h5 className='text-center font-semibold'>Category name</h5>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </section>
