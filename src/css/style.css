@@ -1,0 +1,40 @@
+/* box-border border border-[#6593fc66] rounded-sm px-2 md:px-3 py-[2px] md:py-1 text-[#6593fc] hover:bg-[#6593fc] hover:text-white text-xs md:text-base font-bold */
+
+/* ------- Button Styles ------- */
+.button-primary {
+    box-sizing: border-box;
+    border: 1px solid #6593fc66;
+    border-radius: 2px;
+    padding: 8px 16px;
+    color: #6593fc;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: bold;
+}
+.button-primary:hover {
+    background-color: #6593fc;
+    color: #fff;
+}
+
+.button-secondary {
+    box-sizing: border-box;
+    border: 1px solid #dd37fc4d;
+    border-radius: 2px;
+    padding: 8px 16px;
+    color: #dd37fc;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: bold;
+}
+.button-secondary:hover {
+    background-color: #dd37fc;
+    color: #fff;
+}
+
+/* ------- Responsive Styles ------- */
+/* @media screen and (min-weight: 768px) {
+    .button-primary, .button-secondary {
+        font-size: 16px;
+        line-height: 24px;
+    }
+} */
